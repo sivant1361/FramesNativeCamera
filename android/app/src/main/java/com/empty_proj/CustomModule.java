@@ -1,6 +1,7 @@
 package com.empty_proj;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -86,13 +87,13 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
     public void mySuperDuperFunction(TextureView view) {
             mTextureView = view;
             mMediaRecorder=new MediaRecorder();
-            Toast.makeText(reactContext,"In Super Duper Function",Toast.LENGTH_LONG).show();
+            // Toast.makeText(reactContext,"In Super Duper Function",Toast.LENGTH_LONG).show();
             createImageFolder();
             try{
             createVideoFolder();
-            Toast.makeText(reactContext,"Folder Created",Toast.LENGTH_LONG).show();
+            // Toast.makeText(reactContext,"Folder Created",Toast.LENGTH_LONG).show();
             }catch(Exception e){
-                Toast.makeText(reactContext, e.getMessage()+"Folder not created" ,Toast.LENGTH_LONG).show();
+                // Toast.makeText(reactContext, e.getMessage()+"Folder not created" ,Toast.LENGTH_LONG).show();
             }
             startBackgroundThread();
             startBackgroundThread2();
@@ -114,7 +115,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
 
     @ReactMethod
     public void show(){
-        Toast.makeText(reactContext, "Hi From Android", Toast.LENGTH_LONG).show();
+        // Toast.makeText(reactContext, "Hi From Android", Toast.LENGTH_LONG).show();
     }
 
 
@@ -167,50 +168,50 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
             if(ContextCompat.checkSelfPermission(MainActivity.getmInstanceActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
                 mIsRecording = true;
                 try {
-                    Toast.makeText(reactContext, "Entered CheckWrite Try", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(reactContext, "Entered CheckWrite Try", Toast.LENGTH_SHORT).show();
                     createVideoFileName();
                     Log.i(REACT_CLASS,"Permission For Storage Granted and File Created");
-                    Toast.makeText(reactContext,"Permission For Storage Granted and File Created", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(reactContext,"Permission For Storage Granted and File Created", Toast.LENGTH_SHORT).show();
                 } catch (IOException e){
                     // Toast.makeText(reactContext,"Permission For Storage Granted Error", Toast.LENGTH_SHORT).show();
                     // if(MainActivity.getmInstanceActivity().shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
                     //     Toast.makeText(MainActivity.getmInstanceActivity(), "app needs to be able to save videos", Toast.LENGTH_SHORT).show();
                     // }
-    
+
                     // MainActivity.getmInstanceActivity().requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT);
                     // Log.i(REACT_CLASS,"Permission For Storage Asked");
                     // Toast.makeText(reactContext, "Request Permission asked", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(reactContext, e.getMessage()+"Catch 1", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(reactContext, e.getMessage()+"Catch 1", Toast.LENGTH_SHORT).show();
                     //e.printStackTrace();
                 }
                 try{
                 startRecord();
                 }catch (Exception e){
-                    Toast.makeText(reactContext, e.getMessage()+"Catch 2", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(reactContext, e.getMessage()+"Catch 2", Toast.LENGTH_SHORT).show();
                     //e.printStackTrace();
                 }
                 try{
                     mMediaRecorder.start();
                 }catch (Exception e){
-                    Toast.makeText(reactContext, e.getMessage()+"Catch 3", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(reactContext, e.getMessage()+"Catch 3", Toast.LENGTH_SHORT).show();
                     // e.printStackTrace();
                 }
-                
+
                 //.makeText(MainActivity.getmInstanceActivity(), "RECORD Started", Toast.LENGTH_SHORT).show();
             } else {
                 if(MainActivity.getmInstanceActivity().shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                    Toast.makeText(MainActivity.getmInstanceActivity(), "app needs to be able to save videos", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(MainActivity.getmInstanceActivity(), "app needs to be able to save videos", Toast.LENGTH_SHORT).show();
                 }
 
                 MainActivity.getmInstanceActivity().requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT);
                 Log.i(REACT_CLASS,"Permission For Storage Asked");
-                Toast.makeText(reactContext, "Request Permission asked", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(reactContext, "Request Permission asked", Toast.LENGTH_SHORT).show();
 
             }
 
         }else{
             mIsRecording = true;
-            Toast.makeText(reactContext,"Permission For Storage Granted Else Toast", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(reactContext,"Permission For Storage Granted Else Toast", Toast.LENGTH_SHORT).show();
             try {
                 createVideoFileName();
             } catch (IOException e){
@@ -228,9 +229,9 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
     private static final int REQUEST_CAMERA_PERMISSION_RESULT = 0;
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT = 1;
     private void startRecord(){
-       Toast.makeText(reactContext, "Entered Start Record1", Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(reactContext, "Entered Start Record1", Toast.LENGTH_SHORT).show();
         try {
-           Toast.makeText(reactContext, "Entered Start Record2", Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(reactContext, "Entered Start Record2", Toast.LENGTH_SHORT).show();
         //    fileOutputStreamRecordImageBuffer = new FileOutputStream(mVideoFileName);
             setupMediaRecorder();
             //setupCodec();
@@ -257,7 +258,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                                 mRecordCaptureSession.setRepeatingRequest(mCaptureRequestBuilder.build(), null, mBackgroundHandler);
                                 //mRecordCaptureSession.capture(m2CaptureRequestBuilder.build(), null, mBackgroundHandler);
                             } catch (CameraAccessException e){
-                                Toast.makeText(reactContext, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(reactContext, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
                             }
                         }
@@ -269,7 +270,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                         }
                     }, mBackgroundHandler2);
         } catch (Exception e){
-            Toast.makeText(reactContext, e.getMessage(), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(reactContext, e.getMessage(), Toast.LENGTH_SHORT).show();
             // e.printStackTrace();
         }
 
@@ -282,19 +283,19 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
         String prepend = "VIDEO_" +timestamp+"_";
         File videoFile = File.createTempFile(prepend, ".mp4", mVideoFolder);
         mVideoFileName = videoFile.getAbsolutePath();
-        Toast.makeText(MainActivity.getmInstanceActivity(), "File name created", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(MainActivity.getmInstanceActivity(), "File name created", Toast.LENGTH_SHORT).show();
         return videoFile;
     }
     private void createVideoFolder(){
-        Toast.makeText(reactContext,"In Video Folder",Toast.LENGTH_SHORT).show();
+        // Toast.makeText(reactContext,"In Video Folder",Toast.LENGTH_SHORT).show();
         File movieFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
         mVideoFolder = new File(movieFile, "Frames");
         if(!mVideoFolder.exists()){
-            Toast.makeText(reactContext,"Creating Frames Directory",Toast.LENGTH_SHORT).show();
+            // Toast.makeText(reactContext,"Creating Frames Directory",Toast.LENGTH_SHORT).show();
             mVideoFolder.mkdirs();
         }
         else{
-            Toast.makeText(reactContext,"Frames Directory not created",Toast.LENGTH_SHORT).show();
+            // Toast.makeText(reactContext,"Frames Directory not created",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -312,21 +313,26 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
         //Log.i(Tag,"Entered QUALITY HIGH");
         //mMediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
         mMediaRecorder.setOutputFile(mVideoFileName);
+        //mMediaRecorder.setVideoEncodingBitRate(5000000);
         mMediaRecorder.setVideoEncodingBitRate(profile.videoBitRate);
+        Toast.makeText(reactContext,"Bit Rate"+profile.videoBitRate,Toast.LENGTH_SHORT).show();
         mMediaRecorder.setVideoFrameRate(profile.videoFrameRate);
+        Toast.makeText(reactContext,"Frame Rate"+profile.videoFrameRate,Toast.LENGTH_SHORT).show();
         //mMediaRecorder.setCaptureRate(60);
         //Log.i(Tag,"Entered FrameRate"+profile.videoFrameRate);
         //mMediaRecorder.setVideoSize(profile.videoFrameWidth, profile.videoFrameHeight);
+        Toast.makeText(reactContext,"Resolution Height"+profile.videoFrameHeight+ "Resolution Width" + profile.videoFrameWidth,Toast.LENGTH_SHORT).show();
+
         mMediaRecorder.setVideoSize((int)(profile.videoFrameHeight*videoratio), profile.videoFrameHeight);
         //mMediaRecorder.setVideoSize(profile.videoFrameWidth, (int)(profile.videoFrameWidth*videoratio));
         //Log.i(Tag,"ProfileFrameWidth:"+(int)(profile.videoFrameHeight*videoratio)+"ProfileFrameHeight:"+profile.videoFrameHeight);
         //mMediaRecorder.setVideoSize(mTextureView.getWidth(), mTextureView.getHeight());
-        mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.HEVC);
+        mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         //mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         mMediaRecorder.setOrientationHint(mtotalRotation);
         //Log.i(Tag,"Entered Orientation");
         mMediaRecorder.prepare();
-       Toast.makeText(reactContext,"MediaRecorderSetup",Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(reactContext,"MediaRecorderSetup",Toast.LENGTH_SHORT).show();
         //Log.i(Tag,"Prepared");
 
     }
@@ -337,13 +343,13 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
         startBackgroundThread();
         startBackgroundThread2();
         if (mTextureView.isAvailable()){
-            Toast.makeText(reactContext,"TextureView Surface Texture Available",Toast.LENGTH_LONG).show();
+            // Toast.makeText(reactContext,"TextureView Surface Texture Available",Toast.LENGTH_LONG).show();
             setupCamera(mTextureView.getWidth(), mTextureView.getHeight());
             connectCamera();
 
         }else {
 
-            Toast.makeText(reactContext,"TextureView Surface Texture Not Available",Toast.LENGTH_LONG).show();
+            // Toast.makeText(reactContext,"TextureView Surface Texture Not Available",Toast.LENGTH_LONG).show();
             Log.i(REACT_CLASS,"TextureView Surface Texture Not Available");
             mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
 
@@ -436,10 +442,10 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
             }
         }
         if (bigEnough.size() > 0) {
-            Toast.makeText(reactContext,"Bigger "+ Collections.max(bigEnough, new CompareSizeByArea()),Toast.LENGTH_SHORT).show();
+            // Toast.makeText(reactContext,"Bigger "+ Collections.max(bigEnough, new CompareSizeByArea()),Toast.LENGTH_SHORT).show();
             return Collections.max(bigEnough, new CompareSizeByArea());
         } else {
-            Toast.makeText(reactContext,"Smaller",Toast.LENGTH_SHORT).show();
+            // Toast.makeText(reactContext,"Smaller",Toast.LENGTH_SHORT).show();
             return choices[0];
         }
     }
@@ -489,7 +495,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                 //mImageReader2.setOnImageAvailableListener(mOnImageGetPreviewListener, mBackgroundHandler);
                 //fpsRanges = map.getHighSpeedVideoFpsRanges();
                 Log.i(REACT_CLASS,"PreviewSize"+ mPreviewSize);
-                Toast.makeText(reactContext,"RotatedHeight:"+rotatedHeight+"   RotatedWidth:"+rotatedWidth,Toast.LENGTH_LONG).show();
+                // Toast.makeText(reactContext,"RotatedHeight:"+rotatedHeight+"   RotatedWidth:"+rotatedWidth,Toast.LENGTH_LONG).show();
 
             }
         } catch (CameraAccessException e) {
@@ -574,7 +580,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                     }
                     //Log.i(Tag,"lowerValueFps"+fps2 +":"+i);
                 }
-                Toast.makeText(reactContext,"MAXFPS Index:" + index + " MinValue:" + MaxLower + " MaxValue:" + MaxHigher, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(reactContext,"MAXFPS Index:" + index + " MinValue:" + MaxLower + " MaxValue:" + MaxHigher, Toast.LENGTH_SHORT).show();
                 //Log.i(REACT_CLASS,"MAXFPS Index:" + index + " MinValue:" + MaxLower + " MaxValue:" + MaxHigher );
                 mCaptureRequestBuilder.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE,fpsRanges[index]);
                 maxFps = fpsRanges[index].getUpper();
@@ -609,7 +615,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                             @Override
                             public void onConfigureFailed(CameraCaptureSession session) {
                                 Log.d(REACT_CLASS, "onConfigureFailed: startPreview");
-                                Toast.makeText(reactContext, "Camera Preview Failed", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(reactContext, "Camera Preview Failed", Toast.LENGTH_SHORT).show();
 
                             }
                         }, mBackgroundHandler);
@@ -626,10 +632,6 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
         }
 
     }
-
-
-
-
 
 
     public boolean mIsRecording = false;
@@ -649,7 +651,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                 mMediaRecorder.start();
             }
             else {
-                Toast.makeText(reactContext, "Preview To be Played", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(reactContext, "Preview To be Played", Toast.LENGTH_SHORT).show();
                 startPreview();
             }
             Log.i(REACT_CLASS,"Entered onOpen Camera");
@@ -892,7 +894,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                             Integer afState = captureResult.get(CaptureResult.CONTROL_AF_STATE);
                             Log.i(REACT_CLASS,"Camera Shutter Clicked");
                             //if(afState == CaptureResult.CONTROL_AF_STATE_FOCUSED_LOCKED || afState == CaptureResult.CONTROL_AF_STATE_NOT_FOCUSED_LOCKED){
-                            Toast.makeText(MainActivity.getmInstanceActivity(), "Image Saved", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(MainActivity.getmInstanceActivity(), "Image Saved", Toast.LENGTH_SHORT).show();
                             startStillCaptureRequest();
                             //}
 
@@ -945,7 +947,7 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                             Integer afState = captureResult.get(CaptureResult.CONTROL_AF_STATE);
                             Log.i(REACT_CLASS,"Camera Shutter Clicked");
                             //if(afState == CaptureResult.CONTROL_AF_STATE_FOCUSED_LOCKED || afState == CaptureResult.CONTROL_AF_STATE_NOT_FOCUSED_LOCKED){
-                            Toast.makeText(MainActivity.getmInstanceActivity(), "Image Saved", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(MainActivity.getmInstanceActivity(), "Image Saved", Toast.LENGTH_SHORT).show();
                             startStillCaptureRequest();
                             //}
 
@@ -961,36 +963,39 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                 }
             };
 
+    
+    // CameraManager cameraManager = (CameraManager) reactContext.getSystemService(Context.CAMERA_SERVICE);
+
 
     private void connectCamera(){
+        // Toast.makeText(reactContext,"Connect Camera Toast", Toast.LENGTH_SHORT).show();
         CameraManager cameraManager = (CameraManager) reactContext.getSystemService(Context.CAMERA_SERVICE);
-        Toast.makeText(reactContext,"Connect Camera Toast", Toast.LENGTH_SHORT).show();
         try {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if(ContextCompat.checkSelfPermission(reactContext, android.Manifest.permission.CAMERA) ==
                         PackageManager.PERMISSION_GRANTED) {
                     // Log.i(REACT_CLASS,"Permission Granted");
-                    Toast.makeText(reactContext,"Permission Granted", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(reactContext,"Permission Granted", Toast.LENGTH_SHORT).show();
                     try {
                         cameraManager.openCamera(mCameraId, mCameraDeviceStateCallback, mBackgroundHandler);
                     } catch (Exception e){
                         Log.i(REACT_CLASS,"Error Camera");
-                        Toast.makeText(reactContext,"Error Camera", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(reactContext,"Error Camera", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 } else {
                     if(MainActivity.getmInstanceActivity().shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA)) {
-                        Toast.makeText(reactContext, "Video app required access to camera", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(reactContext, "Video app required access to camera", Toast.LENGTH_SHORT).show();
                     }
 
                     MainActivity.getmInstanceActivity().requestPermissions(new String[] {android.Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO}, REQUEST_CAMERA_PERMISSION_RESULT);
                     // Log.i(REACT_CLASS,"Permission Pop Up Shown");
-                    Toast.makeText(reactContext,"Permission Pop Up Shown", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(reactContext,"Permission Pop Up Shown", Toast.LENGTH_SHORT).show();
                 }
 
             } else {
                 cameraManager.openCamera(mCameraId, mCameraDeviceStateCallback, mBackgroundHandler);
-                Toast.makeText(reactContext,"Permission Pop else condition", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(reactContext,"Permission Pop else condition", Toast.LENGTH_SHORT).show();
             }
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -1030,22 +1035,32 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
             mIsRecording = false;
             startPreview();
        }catch (Exception e){
-            Toast.makeText(reactContext,e.getMessage()+" STOP NOT WORKING", Toast.LENGTH_SHORT).show();
-           
+            // Toast.makeText(reactContext,e.getMessage()+" STOP NOT WORKING", Toast.LENGTH_SHORT).show();
        }
     }
 
 
 
     private final PermissionListener mPermissionListener = new PermissionListener() {
+        @SuppressLint("MissingPermission")
         @Override
         public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+            CameraManager cameraManager = (CameraManager) reactContext.getSystemService(Context.CAMERA_SERVICE);
             //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
             if (requestCode == REQUEST_CAMERA_PERMISSION_RESULT) {
                 if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(reactContext,
-                            "Application will not run without camera services", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(reactContext,"Application will not run without camera services", Toast.LENGTH_SHORT).show();
                 }
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    try {
+                        cameraManager.openCamera(mCameraId, mCameraDeviceStateCallback, mBackgroundHandler);
+                    } catch (Exception e){
+                        Log.i(REACT_CLASS,"Error Camera");
+                        // Toast.makeText(reactContext,"Error Camera", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+
             }
             if (requestCode == REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -1055,13 +1070,11 @@ public class CustomModule extends ReactContextBaseJavaModule implements Lifecycl
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(MainActivity.getmInstanceActivity(),
-                            "Permission Granted for Storage", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(MainActivity.getmInstanceActivity(),"Permission Granted for Storage", Toast.LENGTH_SHORT).show();
                     Log.i(REACT_CLASS, "Permission Granted for Storage");
 
                 } else {
-                    Toast.makeText(MainActivity.getmInstanceActivity(),
-                            "App needs Storage Permissions", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(MainActivity.getmInstanceActivity(),"App needs Storage Permissions", Toast.LENGTH_SHORT).show();
                 }
             }  
             return false;

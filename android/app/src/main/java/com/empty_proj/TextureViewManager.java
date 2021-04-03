@@ -68,7 +68,7 @@ import java.util.Timer;
 import static android.app.PendingIntent.getActivity;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class TextureViewManager extends SimpleViewManager<TextureView> {
+public class TextureViewManager extends SimpleViewManager<TextureView> implements LifecycleEventListener{
 
 
     public static final String REACT_CLASS ="TextureView";
@@ -127,6 +127,27 @@ public class TextureViewManager extends SimpleViewManager<TextureView> {
 
         }
     };
+
+
+    @Override
+    public void onHostResume() {
+        if(mTextureView.isAvailable()){
+            mCustomModule.mySuperDuperFunction(mTextureView);
+        }
+        else{
+            mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
+        }
+    }
+
+    @Override
+    public void onHostPause() {
+
+    }
+
+    @Override
+    public void onHostDestroy() {
+
+    }
 
 //    @ReactProp(name = "onCreated")
 //    public void onCreated(TextureView view){
